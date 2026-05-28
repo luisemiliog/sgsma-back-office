@@ -12,7 +12,7 @@ services:
     ports:
       - "127.0.0.1:3002:3002"   # solo loopback — nginx externo apunta aquí
     env_file:
-      - ./admin/.env.prod
+      - ./admin/.env
     volumes:
       - admin_uploads:/app/uploads
     networks:
