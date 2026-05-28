@@ -1,0 +1,27 @@
+# Producción — docker compose -f docker-compose.prod.yml up -d --build
+# Nginx externo rutea sgsma2026.cl/backoffice/ → 127.0.0.1:3002
+# Se une a la red de sgsma_backend para acceder a Mongo y Redis internos.
+
+services:
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    container_name: sgsma26_admin
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3002:3002"   # solo loopback — nginx externo apunta aquí
+    env_file:
+      - ./admin/.env.prod
+    volumes:
+      - admin_uploads:/app/uploads
+    networks:
+      - backend
+
+volumes:
+  admin_uploads:
+
+networks:
+  backend:
+    external: true
+    name: sgsma_backend_default   # misma red que el API Fastify, Mongo y Redis
