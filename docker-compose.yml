@@ -1,0 +1,26 @@
+services:
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile.dev
+    container_name: sgsma26_admin
+    restart: unless-stopped
+    ports:
+      - "3002:3002"   # API backend
+      - "5173:5173"   # Vite dev server (la UI)
+    env_file:
+      - ./admin/.env
+    volumes:
+      - ./admin/src:/app/src
+      - ./admin/client/src:/app/client/src
+      - uploads:/app/uploads
+    networks:
+      - backend
+
+volumes:
+  uploads:
+
+networks:
+  backend:
+    external: true
+    name: sgsma_backend_default
