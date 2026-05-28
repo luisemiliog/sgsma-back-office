@@ -1,5 +1,5 @@
 # Producción — docker compose -f docker-compose.prod.yml up -d --build
-# Nginx externo rutea sgsma2026.cl/backoffice/ → 127.0.0.1:3002
+# Nginx externo (servidor distinto) rutea sgsma2026.cl/backoffice/ → 192.168.1.88:3002
 # Se une a la red de sgsma_backend para acceder a Mongo y Redis internos.
 
 services:
@@ -10,7 +10,7 @@ services:
     container_name: sgsma26_admin
     restart: unless-stopped
     ports:
-      - "127.0.0.1:3002:3002"   # solo loopback — nginx externo apunta aquí
+      - "3002:3002"   # nginx está en otro servidor — escucha en todas las interfaces
     env_file:
       - ./admin/.env
     volumes:
