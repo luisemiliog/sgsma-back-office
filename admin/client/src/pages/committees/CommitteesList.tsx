@@ -170,7 +170,7 @@ export function CommitteesList() {
                       </tr>
                     </thead>
                     <tbody>
-                      {group.members.map((member, i) => (
+                      {group.members.map((member) => (
                         <tr
                           key={member._id}
                           className="border-b border-[#1E3A5F]/20 last:border-0 hover:bg-white/[0.02] group/row"

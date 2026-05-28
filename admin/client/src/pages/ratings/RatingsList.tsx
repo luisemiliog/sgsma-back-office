@@ -6,7 +6,6 @@ import { ratingsApi } from '../../api/ratings'
 import type { EventRatingSummary, RatingEntry } from '../../api/ratings'
 import { Layout } from '../../components/Layout'
 import { TableSkeleton } from '../../components/ui/Skeleton'
-import { Badge } from '../../components/ui/Badge'
 import client from '../../api/client'
 
 function Stars({ value, size = 13 }: { value: number; size?: number }) {
@@ -116,7 +115,6 @@ export function RatingsList() {
         <div className="space-y-2">
           {events.map((ev, i) => {
             const isOpen = expanded === ev.eventId
-            const hasComments = true
             return (
               <motion.div
                 key={ev.eventId}
