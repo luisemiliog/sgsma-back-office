@@ -24,7 +24,7 @@ const queryClient = new QueryClient({
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.PROD ? '/backoffice' : ''}>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route
