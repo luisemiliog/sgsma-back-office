@@ -9,8 +9,8 @@ COPY src ./src
 RUN npm run build
 
 # Build frontend (vite build corre en mode production por defecto)
-COPY client/package.json client/package-lock.json ./client/
-RUN cd client && npm ci
+COPY client/package.json ./client/
+RUN cd client && npm install
 COPY client ./client
 RUN cd client && npm run build
 
