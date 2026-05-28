@@ -9,8 +9,6 @@ export const config = {
   mongoUrl: process.env.MONGO_URL ?? 'mongodb://localhost:27017',
   dbName: process.env.DB_NAME ?? 'sgsma2026',
   redisUrl: process.env.REDIS_URL ?? 'redis://localhost:6379',
-  mqttHost: process.env.MQTT_HOST ?? 'localhost',
-  mqttPort: parseInt(process.env.MQTT_PORT ?? '1883', 10),
   jwtSecret: process.env.JWT_SECRET ?? 'dev_secret_change_in_prod',
   jwtTtl: parseInt(process.env.JWT_TTL ?? '28800', 10),
   adminUser: process.env.ADMIN_USER ?? 'admin',

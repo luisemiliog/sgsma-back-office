@@ -8,7 +8,6 @@ import { config } from './config.js'
 import { connectMongo } from './db/mongo.js'
 import { seedInitialAdmin } from './db/seed.js'
 import { connectRedis } from './services/redis.js'
-import { connectMqtt } from './services/mqtt.js'
 import authRouter from './routes/auth.js'
 import eventsRouter from './routes/events.js'
 import speakersRouter from './routes/speakers.js'
@@ -66,7 +65,6 @@ async function start() {
   await connectMongo()
   await seedInitialAdmin()
   await connectRedis()
-  connectMqtt()
   app.listen(config.port, () => {
     console.log(`[admin] running on :${config.port}`)
   })

@@ -2,7 +2,6 @@ import { Router } from 'express'
 import { ObjectId } from 'mongodb'
 import { collections } from '../db/mongo.js'
 import { requireAdmin } from '../middleware/auth.js'
-import { publishAnnouncement } from '../services/mqtt.js'
 import { bumpContentVersion } from '../services/redis.js'
 import type { Announcement } from '../types/index.js'
 
@@ -22,7 +21,6 @@ router.post('/', async (req, res) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const result = await collections.announcements().insertOne(insertData as any)
   const doc = { _id: result.insertedId, ...insertData }
-  publishAnnouncement(doc)
   await bumpContentVersion()
   res.status(201).json(doc)
 })
